@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "899404200080",
+    "firebase_url": "https://flutter-taipei.firebaseio.com",
+    "project_id": "flutter-taipei",
+    "storage_bucket": "flutter-taipei.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:899404200080:android:15f5c2843210b944118015",
+        "android_client_info": {
+          "package_name": "app.fluttertaipei.flutter_taipei"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "899404200080-8ftdnkvia0hqam5cc7j852fscs80plot.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC5lrZeBD68-qV1WiQWKb_EUOEOSFgqg28"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "899404200080-8ftdnkvia0hqam5cc7j852fscs80plot.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
