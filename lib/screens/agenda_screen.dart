@@ -7,25 +7,25 @@ class AgendaScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[200],
       body: Center(
         child: Container(
           padding: EdgeInsets.only(top: 100.0, left: 8.0, right: 8.0),
           child: Timeline(
-            children: agendas.map((agenda) => TimelineItem(timeline: agenda)).toList(),
-            indicators: <Widget>[
-              Icon(Icons.access_alarm),
-              Icon(Icons.backup),
-              Icon(Icons.accessibility_new),
-              Icon(Icons.access_alarm),
-              Icon(Icons.access_alarm),
-              Icon(Icons.backup),
-              Icon(Icons.accessibility_new),
-              Icon(Icons.access_alarm),
-            ],
+//indicatorStyle: PaintingStyle.fill,
+            indicatorSize: 50.0,
+//            indicatorColor: Colors.deepOrangeAccent,
+            children: agendas
+                .map((agenda) => TimelineItem(timeline: agenda))
+                .toList(),
+            indicators: times
+                .map((time) =>
+                    Card(child: Text(time, style: TextStyle(fontWeight: FontWeight.bold))))
+                .toList(),
           ),
         ),
       ),
     );
   }
 }
+
+
