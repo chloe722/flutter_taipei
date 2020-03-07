@@ -1,4 +1,5 @@
 import 'package:flutter_taipei/assets.dart';
+import 'package:flutter_taipei/model/lightening_talk.dart';
 import 'package:flutter_taipei/model/speaker.dart';
 import 'package:flutter_taipei/model/timeline_item.dart';
 import 'package:flutter_taipei/strings.dart';
@@ -36,4 +37,14 @@ final List<String> times = [
   "20:40",
   "21:00",
   "21:30",
+];
+
+
+final List<LighteningTalk> lighteningTalks = [
+
+  LighteningTalk(orderNumber: "1", speakerName: "多拉A夢", topic: "Flutter心路歷程"),
+  LighteningTalk(orderNumber: "2", speakerName: "大雄", topic: "接觸Flutter"),
+  LighteningTalk(orderNumber: "3", speakerName: "瑞貝卡", topic: "Flutter 專案"),
+  LighteningTalk(orderNumber: "4", speakerName: "小袋", topic: "Flutter 好夥伴"),
+
 ];
