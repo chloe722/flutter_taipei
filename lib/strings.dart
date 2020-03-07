@@ -16,3 +16,23 @@ const String kSpeakerTopic2 = "TBD";
 const String kSpeakerIntro2 =
     "一名工程師\n曾經 12 年待在上海沒有回過台灣。回台灣的第一年，爬玉山、腳踏車環島、泳渡日月潭，後來完成了標準鐵人三項。當然還很喜歡讀書和旅遊，目前是「好想工作室」的 co-founder";
 const String kSpeakerTopicIntro2 = "";
+
+const String kLighteningTalkTitle = "現場分享者";
+const String kAgendaTitle = "流程";
+
+
+const String kSignUp = "登記";
+const String kSignUpForLighteningTalk = "報名分享";
+
+const String kNumberLabel = "號碼";
+const String kNameLabel = "名字";
+const String kTopicLabel = "主題";
+const String kNumberHint = "填寫現場發放號碼";
+const String kNameHint = "填寫名字";
+const String kTopicHint = "填寫想分享的題目";
+
+const String kErrorNumberInput = "請填寫號碼";
+const String kInvalidNumberInput = "號碼無效，請重新輸入";
+const String kErrorNameInput = "請填寫名字";
+const String kErrorTopicInput = "請填寫題目";
+

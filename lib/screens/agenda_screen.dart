@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_taipei/constants.dart';
 import 'package:flutter_taipei/data.dart';
+import 'package:flutter_taipei/strings.dart';
 import 'package:flutter_taipei/timeline.dart';
 import 'package:flutter_taipei/timeline_item.dart';
 
@@ -9,7 +10,7 @@ class AgendaScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Agenda"),
+        title: Text(kAgendaTitle),
         backgroundColor: kBgColor,
       ),
       body: Center(

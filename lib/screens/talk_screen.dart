@@ -2,13 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_taipei/constants.dart';
 import 'package:flutter_taipei/data.dart';
 import 'package:flutter_taipei/model/lightening_talk.dart';
+import 'package:flutter_taipei/screens/sign_up_lightening_talk_screen.dart';
+import 'package:flutter_taipei/strings.dart';
 
 class TalkScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("現場分享者"),
+        title: Text(kLighteningTalkTitle),
         backgroundColor: kBgColor,
       ),
       floatingActionButton: FloatingActionButton.extended(
@@ -19,11 +21,13 @@ class TalkScreen extends StatelessWidget {
         label: Row(
           children: <Widget>[
             Icon(Icons.add),
-            Text("報名分享"),
+            Text(kSignUpForLighteningTalk),
           ],
         ),
         onPressed: () {
-          print("click");
+          showDialog(context: context,
+          builder: (context) => SignUpLighteningTalkScreen(),
+          barrierDismissible: true);
         },
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
