@@ -25,9 +25,7 @@ class TalkScreen extends StatelessWidget {
           ],
         ),
         onPressed: () {
-          showDialog(context: context,
-          builder: (context) => SignUpLighteningTalkScreen(),
-          barrierDismissible: true);
+           return  Navigator.push(context, MaterialPageRoute(builder: (context) => SignUpLighteningTalkScreen()));
         },
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,

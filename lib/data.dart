@@ -42,7 +42,7 @@ final List<String> times = [
 //TODO
 final List<LighteningTalk> lighteningTalks = [
 
-  LighteningTalk(orderNumber: "1", speakerName: "多拉A夢", topic: "Flutter心路歷程"),
+  LighteningTalk(orderNumber: "1", speakerName: "多拉A夢", topic: "Flutter心路歷程Flutter心路歷程Flutter心路歷程Flutter心路歷程"),
   LighteningTalk(orderNumber: "2", speakerName: "大雄", topic: "接觸Flutter"),
   LighteningTalk(orderNumber: "3", speakerName: "瑞貝卡", topic: "Flutter 專案"),
   LighteningTalk(orderNumber: "4", speakerName: "小袋", topic: "Flutter 好夥伴"),
