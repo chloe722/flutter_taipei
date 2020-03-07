@@ -3,10 +3,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_taipei/constants.dart';
 import 'package:flutter_taipei/model/speaker.dart';
 
-class TalkDetailScreen extends StatelessWidget {
+class TalkDetailScreen extends StatefulWidget {
   TalkDetailScreen({this.speaker});
 
   final Speaker speaker;
+
+  @override
+  _TalkDetailScreenState createState() => _TalkDetailScreenState();
+}
+
+class _TalkDetailScreenState extends State<TalkDetailScreen> {
 
   Widget _content({String text, bool isHeading}) {
     return Padding(
@@ -18,30 +24,62 @@ class TalkDetailScreen extends StatelessWidget {
     );
   }
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: SingleChildScrollView(
-        child: Center(
-          child: Container(
-            margin: EdgeInsets.only(top: 50.0, left: 8.0, right: 8.0),
-            padding: EdgeInsets.symmetric(horizontal: 8.0, vertical: 32.0),
+  Widget _buildCard() {
+    return Positioned(
+      width: MediaQuery.of(context).size.width - 20,
+      top: MediaQuery.of(context).size.height * 0.1,
+      child: Card(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.0)),
+        elevation: 8.0,
+        child: Container(
+          padding: EdgeInsets.symmetric(horizontal: 8.0, vertical: 32.0),
+          child: SingleChildScrollView(
             child: Column(
               mainAxisSize: MainAxisSize.max,
               children: <Widget>[
-                Container(
-                    width: 100.0,
-                    height: 100.0,
-                    margin: EdgeInsets.symmetric(vertical: 16.0),
-                    child: CircleAvatar(
-                        backgroundImage: AssetImage(speaker.photo))),
-                _content(text: speaker.name, isHeading: true),
-                _content(text: speaker.introduction, isHeading: false),
-                _content(text: speaker.talkTopic, isHeading: true),
-                _content(text: speaker.topicIntro, isHeading: false),
+                _content(text: widget.speaker.name, isHeading: true),
+                _content(text: widget.speaker.introduction, isHeading: false),
+                _content(text: widget.speaker.talkTopic, isHeading: true),
+                _content(text: widget.speaker.topicIntro, isHeading: false),
               ],
             ),
           ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildImage() {
+    return Align(
+      alignment: Alignment.topCenter,
+      child: Hero(
+        tag: widget.speaker.name,
+        child: Container(
+            width: 100.0,
+            height: 100.0,
+            margin: EdgeInsets.symmetric(vertical: 16.0),
+            child: CircleAvatar(
+                backgroundImage: AssetImage(widget.speaker.photo))),
+      ),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: kBgColor,
+      appBar: AppBar(
+        elevation: 0.0,
+        backgroundColor: kBgColor,
+      ),
+      body: Center(
+        child: Stack(
+          overflow: Overflow.visible,
+          alignment: Alignment.center,
+          children: <Widget>[
+            _buildCard(),
+            _buildImage(),
+          ],
         ),
       ),
     );

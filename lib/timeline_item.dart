@@ -13,10 +13,13 @@ class TimelineItem extends StatelessWidget {
 
   final Radius _radius = Radius.circular(16.0);
 
+
   @override
   Widget build(BuildContext context) {
+    bool _isTalk = timeline.speaker != null;
+
     return InkWell(
-      onTap: timeline.speaker != null
+      onTap: _isTalk
           ? () => Navigator.of(context).push(MaterialPageRoute(
               builder: (context) =>
                   TalkDetailScreen(speaker: timeline.speaker)))
@@ -36,10 +39,9 @@ class TimelineItem extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 16.0),
               child: Text(
-                timeline.speaker != null
-                    ? timeline.speaker.talkTopic
-                    : timeline.content,
+                _isTalk? timeline.speaker.talkTopic : timeline.content,
                 textAlign: TextAlign.center,
+                style: TextStyle(fontWeight: _isTalk? FontWeight.bold : null),
               ),
             ),
             if (timeline.speaker != null) SpeakerRow(speaker: timeline.speaker),
@@ -63,13 +65,16 @@ class SpeakerRow extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         mainAxisSize: MainAxisSize.max,
         children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.only(right: 8.0),
-            child: Container(
-                width: 30.0,
-                height: 30.0,
-                child:
-                    CircleAvatar(backgroundImage: AssetImage(speaker.photo))),
+          Hero(
+            tag: speaker.name,
+            child: Padding(
+              padding: EdgeInsets.only(right: 8.0),
+              child: Container(
+                  width: 30.0,
+                  height: 30.0,
+                  child:
+                      CircleAvatar(backgroundImage: AssetImage(speaker.photo))),
+            ),
           ),
           Text(
             speaker.name,
