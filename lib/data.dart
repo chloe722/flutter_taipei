@@ -4,27 +4,29 @@ import 'package:flutter_taipei/model/speaker.dart';
 import 'package:flutter_taipei/model/timeline_item.dart';
 import 'package:flutter_taipei/strings.dart';
 
-final List<TimelineModel> agendas = [
-  TimelineModel(content: kAgenda1),
-  TimelineModel(content: kAgenda2),
-  TimelineModel(
+final List<AgendaModel> agendas = [
+  AgendaModel(content: kAgenda1, image: kFoodImage, time: "18:30"),
+  AgendaModel(content: kAgenda2, image: kToastyImage, time: "19:00"),
+  AgendaModel(
+    time: "19:10",
       speaker: Speaker(
           name: kSpeakerName1,
           photo: kSpeaker1Photo,
           introduction: kSpeakerIntro1,
           talkTopic: kSpeakerTopic1,
       topicIntro: kSpeakerTopicIntro1)),
-  TimelineModel(content: kAgenda4),
-  TimelineModel(
+  AgendaModel(content: kAgenda4, image: kGameImage, time: "19:40"),
+  AgendaModel(
+    time: "20:10",
       speaker: Speaker(
           name: kSpeakerName2,
           photo: kSpeaker2Photo,
           introduction: kSpeakerIntro2,
           talkTopic: kSpeakerTopic2,
           topicIntro: kSpeakerTopicIntro2)),
-  TimelineModel(content: kAgenda6),
-  TimelineModel(content: kAgenda7),
-  TimelineModel(content: kAgenda8),
+  AgendaModel(content: kAgenda6, image: kLighteningTalkImage, time: "20:40"),
+  AgendaModel(content: kAgenda7, image: kNetworkingImage, time:"21:00"),
+  AgendaModel(content: kAgenda8, image: kGoHomeImage, time:"21:30"),
 ];
 
 

@@ -15,23 +15,27 @@ class AgendaScreen extends StatelessWidget {
       ),
       body: Center(
         child: Container(
-          padding: EdgeInsets.only(left: 8.0, right: 8.0),
-          child: Timeline(
-//indicatorStyle: PaintingStyle.fill,
-            indicatorSize: 50.0,
-//            indicatorColor: Colors.deepOrangeAccent,
-            children: agendas
-                .map((agenda) => TimelineItem(timeline: agenda))
-                .toList(),
-            indicators: times
-                .map((time) =>
-                    Card(child: Text(time, style: TextStyle(fontWeight: FontWeight.bold))))
-                .toList(),
-          ),
-        ),
+            padding: EdgeInsets.only(left: 8.0, right: 8.0),
+            child: ListView.builder(
+              itemCount: agendas.length,
+                itemBuilder: (context, index) => TimelineItem(
+                      timeline: agendas[index],
+                    ))),
       ),
     );
   }
 }
 
-
+//
+//Timeline(
+////indicatorStyle: PaintingStyle.fill,
+//indicatorSize: 50.0,
+////            indicatorColor: Colors.deepOrangeAccent,
+//children: agendas
+//    .map((agenda) => TimelineItem(timeline: agenda))
+//.toList(),
+//indicators: times
+//    .map((time) =>
+//Card(child: Text(time, style: TextStyle(fontWeight: FontWeight.bold))))
+//.toList(),
+//),

@@ -1,9 +1,11 @@
 import 'package:flutter_taipei/model/speaker.dart';
 
-class TimelineModel {
+class AgendaModel {
   Speaker speaker;
   String content;
+  String image;
+  String time;
 
-  TimelineModel({this.speaker, this.content});
+  AgendaModel({this.speaker, this.content, this.image, this.time});
 
 }
