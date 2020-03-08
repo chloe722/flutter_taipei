@@ -4,6 +4,7 @@ import 'package:flutter_taipei/constants.dart';
 import 'package:flutter_taipei/firebase_client.dart';
 import 'package:flutter_taipei/model/speaker.dart';
 import 'package:flutter_taipei/strings.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class SignUpLighteningTalkScreen extends StatefulWidget {
   @override
@@ -21,14 +22,17 @@ class _SignUpLighteningTalkScreenState
 
   final _formKey = GlobalKey<FormState>();
 
+  bool _loading = false;
+
   Widget _formField(
       {TextEditingController controller, String hint, IconData icon}) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 16.0),
       child: TextFormField(
         controller: controller,
-        keyboardType:
-            (hint == kNumberHint) ? TextInputType.number : TextInputType.multiline,
+        keyboardType: (hint == kNumberHint)
+            ? TextInputType.number
+            : TextInputType.multiline,
         validator: (val) => _validateInput(type: hint, val: val),
         maxLines: null,
         autofocus: true,
@@ -55,24 +59,46 @@ class _SignUpLighteningTalkScreenState
     }
   }
 
-//  bool _validateNumber(String number) async {
-//
-//    await isNumberValidated(number).then((isValid) {
-//      return isValid;
-//    });
-//  }
-
-  void _signUp() {
+  Future<void> _signUp() async {
+    setState(() {
+      _loading = true;
+    });
     if (_formKey.currentState.validate()) {
       String _number = numberController.value.text;
       String _name = nameController.value.text;
       String _topic = topicController.value.text;
 
-      print(_number + _name + _topic);
-      Navigator.pop(context);
+      print("result: ${_number + _name + _topic}");
+
+      var result = await signUpLighteningTalk(name: _name, number: _number, topic: _topic);
+
+      setState(() {
+        _loading = false;
+        if (result) {
+          Navigator.pop(context);
+          print("登記成功！"); //TODO add toast
+        } else {
+          print("號碼無效，請檢查輸入的號碼是否確"); //TODO add toast
+        }
+      });
+
+
+//      await isNumberValidated(_number).then((validated) async {
+//        if (validated) {
+//
+//          setState(() {
+//            _loading = false;
+//            Navigator.pop(context);
+//          });
+//        } else {
+//          setState(() {
+//            _loading = false;
+//            print("號碼無效，請檢查輸入的號碼是否確"); //TODO add toast
+//          });
+//        }
+//      });
     }
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -88,7 +114,6 @@ class _SignUpLighteningTalkScreenState
                 mainAxisSize: MainAxisSize.max,
                 children: <Widget>[
                   Spacer(flex: 1),
-
                   _formField(
                     hint: kNumberHint,
                     icon: Icons.confirmation_number,
@@ -105,15 +130,18 @@ class _SignUpLighteningTalkScreenState
                   Spacer(flex: 1),
                   MaterialButton(
                     minWidth: double.infinity,
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
-                    padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 16.0),
-                    onPressed: () => _signUp(),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20.0)),
+                    padding:
+                        EdgeInsets.symmetric(horizontal: 16.0, vertical: 16.0),
+                    onPressed: _loading ? null : () => _signUp(),
                     splashColor: Colors.grey,
-                    child: Text(kSignUp, style: TextStyle(color: Colors.white)),
+                    child: _loading
+                        ? CircularProgressIndicator()
+                        : Text(kSignUp, style: TextStyle(color: Colors.white)),
                     color: kBgColor,
                   ),
                   Spacer(flex: 1),
-
                 ],
               ),
             ),
