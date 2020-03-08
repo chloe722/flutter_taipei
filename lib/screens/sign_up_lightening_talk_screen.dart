@@ -81,22 +81,6 @@ class _SignUpLighteningTalkScreenState
           print("號碼無效，請檢查輸入的號碼是否確"); //TODO add toast
         }
       });
-
-
-//      await isNumberValidated(_number).then((validated) async {
-//        if (validated) {
-//
-//          setState(() {
-//            _loading = false;
-//            Navigator.pop(context);
-//          });
-//        } else {
-//          setState(() {
-//            _loading = false;
-//            print("號碼無效，請檢查輸入的號碼是否確"); //TODO add toast
-//          });
-//        }
-//      });
     }
   }
 
