@@ -1,32 +1,34 @@
 import 'package:flutter_taipei/assets.dart';
 import 'package:flutter_taipei/model/lightening_talk.dart';
 import 'package:flutter_taipei/model/speaker.dart';
-import 'package:flutter_taipei/model/timeline_item.dart';
+import 'package:flutter_taipei/model/agenda_item.dart';
 import 'package:flutter_taipei/strings.dart';
 
 final List<AgendaModel> agendas = [
-  AgendaModel(content: kAgenda1, image: kFoodImage, time: "18:30"),
-  AgendaModel(content: kAgenda2, image: kToastyImage, time: "19:00"),
+  AgendaModel(content: kAgenda1, image: kFoodImage, time: "18:30", duration: "30"),
+  AgendaModel(content: kAgenda2, image: kToastyImage, time: "19:00", duration: "10"),
   AgendaModel(
     time: "19:10",
+      duration: "30",
       speaker: Speaker(
           name: kSpeakerName1,
           photo: kSpeaker1Photo,
           introduction: kSpeakerIntro1,
           talkTopic: kSpeakerTopic1,
       topicIntro: kSpeakerTopicIntro1)),
-  AgendaModel(content: kAgenda4, image: kGameImage, time: "19:40"),
+  AgendaModel(content: kAgenda4, image: kGameImage, time: "19:40", duration: "30"),
   AgendaModel(
     time: "20:10",
+      duration: "30",
       speaker: Speaker(
           name: kSpeakerName2,
           photo: kSpeaker2Photo,
           introduction: kSpeakerIntro2,
           talkTopic: kSpeakerTopic2,
           topicIntro: kSpeakerTopicIntro2)),
-  AgendaModel(content: kAgenda6, image: kLighteningTalkImage, time: "20:40"),
-  AgendaModel(content: kAgenda7, image: kNetworkingImage, time:"21:00"),
-  AgendaModel(content: kAgenda8, image: kGoHomeImage, time:"21:30"),
+  AgendaModel(content: kAgenda6, image: kLighteningTalkImage, time: "20:40", duration: "30"),
+  AgendaModel(content: kAgenda7, image: kNetworkingImage, time:"21:00", duration: "30"),
+  AgendaModel(content: kAgenda8, image: kGoHomeImage, time:"21:30", duration: "0"),
 ];
 
 

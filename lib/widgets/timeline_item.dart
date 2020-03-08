@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_taipei/model/speaker.dart';
-import 'package:flutter_taipei/model/timeline_item.dart';
+import 'package:flutter_taipei/model/agenda_item.dart';
 import 'package:flutter_taipei/screens/talk_detail_screen.dart';
 
 //class TimelineItem extends StatelessWidget {
@@ -86,10 +86,10 @@ import 'package:flutter_taipei/screens/talk_detail_screen.dart';
 //  }
 //}
 
-class TimelineItem extends StatelessWidget {
-  final AgendaModel timeline;
+class AgendaItem extends StatelessWidget {
+  final AgendaModel agenda;
 
-  TimelineItem({this.timeline});
+  AgendaItem({this.agenda});
 
   Widget _image({bool isTalk}) {
     return Container(
@@ -97,12 +97,12 @@ class TimelineItem extends StatelessWidget {
         height: 50.0,
         child: CircleAvatar(
             backgroundImage:
-                AssetImage(isTalk ? timeline.speaker.photo : timeline.image)));
+                AssetImage(isTalk ? agenda.speaker.photo : agenda.image)));
   }
 
   @override
   Widget build(BuildContext context) {
-    bool _isTalk = timeline.speaker != null;
+    bool _isTalk = agenda.speaker != null;
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
       child: Card(
@@ -113,25 +113,42 @@ class TimelineItem extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
               Padding(
-                padding: const EdgeInsets.only(left: 20.0),
-                child: Text(timeline.time),
+                padding: const EdgeInsets.only(left: 23.0, bottom: 8.0),
+                child: Text(agenda.time,
+                    style: TextStyle(fontWeight: FontWeight.bold)),
               ),
               ListTile(
                   leading: _isTalk
                       ? Hero(
-                          tag: timeline.speaker.name,
+                          tag: agenda.speaker.name,
                           child: _image(isTalk: _isTalk))
                       : _image(isTalk: _isTalk),
                   title: Text(
-                      _isTalk ? timeline.speaker.talkTopic : timeline.content),
+                    _isTalk ? agenda.speaker.talkTopic : agenda.content,
+                    style: TextStyle(letterSpacing: 0.5, fontWeight: FontWeight.w500, fontSize: 14.0),
+                  ),
                   isThreeLine: _isTalk,
-                  subtitle: _isTalk ? Text(timeline.speaker.name) : null,
-                  trailing: Text("25 min"),
+                  subtitle: _isTalk
+                      ? Text(agenda.speaker.name)
+                      : Container(child: null),
+                  trailing: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: <Widget>[
+                      Padding(
+                        padding: const EdgeInsets.only(right: 4.0),
+                        child: Icon(Icons.access_time, size: 12.0),
+                      ),
+                      Text(
+                        "${agenda.duration} m",
+                        style: TextStyle(fontSize: 12.0),
+                      ),
+                    ],
+                  ),
                   onTap: _isTalk
                       ? () => Navigator.of(context).push(
                             MaterialPageRoute(
-                                builder: (context) => TalkDetailScreen(
-                                    speaker: timeline.speaker)),
+                                builder: (context) =>
+                                    TalkDetailScreen(speaker: agenda.speaker)),
                           )
                       : null),
             ],

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_taipei/constants.dart';
+import 'package:flutter_taipei/firebase_client.dart';
 import 'package:flutter_taipei/model/speaker.dart';
 import 'package:flutter_taipei/strings.dart';
 
@@ -44,15 +45,7 @@ class _SignUpLighteningTalkScreenState
   String _validateInput({String type, String val}) {
     switch (type) {
       case kNumberHint:
-        if (val.isEmpty) {
-          return kErrorNumberInput;
-        } else if (_validateNumber() == false) {
-          return kInvalidNumberInput;
-        } else {
-          return null;
-        }
-        break;
-
+        return (val.isEmpty) ? kErrorNumberInput : null;
       case kNameHint:
         return (val.isEmpty) ? kErrorNameInput : null;
       case kTopicHint:
@@ -62,10 +55,12 @@ class _SignUpLighteningTalkScreenState
     }
   }
 
-  bool _validateNumber() {
-    //TODO
-    return true;
-  }
+//  bool _validateNumber(String number) async {
+//
+//    await isNumberValidated(number).then((isValid) {
+//      return isValid;
+//    });
+//  }
 
   void _signUp() {
     if (_formKey.currentState.validate()) {
