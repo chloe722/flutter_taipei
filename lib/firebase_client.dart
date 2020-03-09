@@ -5,20 +5,15 @@ Firestore _firestore = Firestore();
 
 
 Future<bool> isNumberValidated(String number) async {
-  QuerySnapshot snapshot = await _firestore.collection("valid_numbers")
-      .getDocuments();
+  final snapshot = await _firestore.collection("valid_numbers").document(number).get();
 
-  for (DocumentSnapshot document in snapshot.documents) {
-    print(document.documentID);
-     return number == document.documentID;
-  }
-
-  return false;
+  return (snapshot != null && snapshot.exists);
 }
 
 Future<bool> signUpLighteningTalk({String number, String name, String topic}) async {
 
   var result = await isNumberValidated(number);
+  print("result: ${number + name + topic}");
 
   if (result) {
     await _firestore.document("lightening_talk/$number").setData({
