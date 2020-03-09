@@ -4,8 +4,14 @@ import 'package:flutter_taipei/database.dart';
 import 'package:flutter_taipei/model/lightening_talk.dart';
 import 'package:flutter_taipei/screens/sign_up_lightening_talk_screen.dart';
 import 'package:flutter_taipei/strings.dart';
+import 'package:flutter_taipei/widgets/lightening_talk_item.dart';
 
 class TalkScreen extends StatelessWidget {
+  void onPress(BuildContext context) {
+    Navigator.push(context,
+        MaterialPageRoute(builder: (context) => SignUpLighteningTalkScreen()));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -13,22 +19,10 @@ class TalkScreen extends StatelessWidget {
         title: Text(kLighteningTalkTitle),
         backgroundColor: kBgColor,
       ),
-      floatingActionButton: FloatingActionButton.extended(
-        isExtended: true,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.0)),
-        elevation: 8.0,
-        label: Row(
-          children: <Widget>[
-            Icon(Icons.add),
-            Text(kSignUpForLighteningTalk),
-          ],
-        ),
-        onPressed: () {
-          return Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => SignUpLighteningTalkScreen()));
-        },
+      floatingActionButton: CustomFloatingButton(
+        label: kSignUpForLighteningTalk,
+        icon: Icons.add,
+        onPress: () => onPress(context),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       body: Container(
@@ -37,7 +31,6 @@ class TalkScreen extends StatelessWidget {
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting)
                 CircularProgressIndicator();
-
               if (snapshot.hasData && snapshot.data != null) {
                 final _data = snapshot.data;
                 print(_data);
@@ -51,7 +44,7 @@ class TalkScreen extends StatelessWidget {
                         ),
                       )
                     : Container(
-                        child: Center(child: Text("成為第一個分享者吧！")),
+                        child: Center(child: Text("趕快插頭香！大家等你分享呢！")),
                       );
               } else {
                 return CircularProgressIndicator();
@@ -62,33 +55,26 @@ class TalkScreen extends StatelessWidget {
   }
 }
 
-class LighteningTalkItem extends StatelessWidget {
-  LighteningTalkItem({this.talk, this.number});
+class CustomFloatingButton extends StatelessWidget {
+  CustomFloatingButton({this.label, this.icon, this.onPress});
 
-  final LighteningTalk talk;
-  final String number;
-
-  Widget _buildNumber() {
-    return Text(number,
-        style: TextStyle(color: Colors.lightBlue, fontSize: 28.0));
-  }
+  final String label;
+  final IconData icon;
+  final Function onPress;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
-      child: Card(
-          elevation: 4.0,
-          child: ListTile(
-            contentPadding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 32.0),
-            leading: _buildNumber(),
-            title: Text(
-              talk.topic,
-              softWrap: true,
-              style: kHeadingTextStyle,
-            ),
-            subtitle: Text(talk.speakerName, softWrap: true),
-          )),
+    return FloatingActionButton.extended(
+      isExtended: true,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.0)),
+      elevation: 8.0,
+      label: Row(
+        children: <Widget>[
+          Icon(icon),
+          Text(label),
+        ],
+      ),
+      onPressed: onPress,
     );
   }
 }
