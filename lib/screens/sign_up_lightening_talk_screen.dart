@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_taipei/constants.dart';
 import 'package:flutter_taipei/firebase_client.dart';
-import 'package:flutter_taipei/model/speaker.dart';
 import 'package:flutter_taipei/strings.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
@@ -75,13 +74,26 @@ class _SignUpLighteningTalkScreenState
       setState(() {
         _loading = false;
         if (result) {
+          showToast("登記成功！");
           Navigator.pop(context);
-          print("登記成功！"); //TODO add toast
         } else {
-          print("號碼無效，請檢查輸入的號碼是否確"); //TODO add toast
+          showToast("號碼無效，請檢查輸入的號碼是否確");
         }
       });
     }
+  }
+
+
+  void showToast(String msg) {
+    Fluttertoast.showToast(
+        msg: msg,
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.CENTER,
+        timeInSecForIos: 1,
+        backgroundColor: Colors.black54,
+        textColor: Colors.white,
+        fontSize: 16.0
+    );
   }
 
   @override

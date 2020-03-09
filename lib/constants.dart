@@ -13,5 +13,4 @@ const TextStyle kContentTextStyle = TextStyle(
   height: 1.7
 );
 
-
 const Color kBgColor = Colors.lightBlueAccent;
