@@ -23,6 +23,7 @@ const String kAgendaTitle = "流程";
 
 const String kSignUp = "登記";
 const String kSignUpForLighteningTalk = "報名分享";
+const String kEditingSubmittedTopic = "修改分享題目";
 
 const String kNumberLabel = "號碼";
 const String kNameLabel = "名字";

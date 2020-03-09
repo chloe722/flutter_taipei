@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_taipei/constants.dart';
-import 'package:flutter_taipei/firebase_client.dart';
+import 'package:flutter_taipei/database.dart';
 import 'package:flutter_taipei/model/lightening_talk.dart';
 import 'package:flutter_taipei/screens/sign_up_lightening_talk_screen.dart';
 import 'package:flutter_taipei/strings.dart';
@@ -15,8 +15,7 @@ class TalkScreen extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton.extended(
         isExtended: true,
-        shape:
-            RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.0)),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.0)),
         elevation: 8.0,
         label: Row(
           children: <Widget>[

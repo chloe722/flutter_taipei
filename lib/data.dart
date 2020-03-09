@@ -32,23 +32,23 @@ final List<AgendaModel> agendas = [
 ];
 
 
-final List<String> times = [
-  "18:30",
-  "19:00",
-  "19:10",
-  "19:40",
-  "20:10",
-  "20:40",
-  "21:00",
-  "21:30",
-];
-
-//TODO
-final List<LighteningTalk> lighteningTalks = [
-
-  LighteningTalk(orderNumber: "1", speakerName: "多拉A夢", topic: "Flutter心路歷程Flutter心路歷程Flutter心路歷程Flutter心路歷程"),
-  LighteningTalk(orderNumber: "2", speakerName: "大雄", topic: "接觸Flutter"),
-  LighteningTalk(orderNumber: "3", speakerName: "瑞貝卡", topic: "Flutter 專案"),
-  LighteningTalk(orderNumber: "4", speakerName: "小袋", topic: "Flutter 好夥伴"),
-
-];
+//final List<String> times = [
+//  "18:30",
+//  "19:00",
+//  "19:10",
+//  "19:40",
+//  "20:10",
+//  "20:40",
+//  "21:00",
+//  "21:30",
+//];
+////
+////TODO
+//final List<LighteningTalk> lighteningTalks = [
+//
+//  LighteningTalk(orderNumber: "1", speakerName: "多拉A夢", topic: "Flutter心路歷程Flutter心路歷程Flutter心路歷程Flutter心路歷程"),
+//  LighteningTalk(orderNumber: "2", speakerName: "大雄", topic: "接觸Flutter"),
+//  LighteningTalk(orderNumber: "3", speakerName: "瑞貝卡", topic: "Flutter 專案"),
+//  LighteningTalk(orderNumber: "4", speakerName: "小袋", topic: "Flutter 好夥伴"),
+//
+//];
