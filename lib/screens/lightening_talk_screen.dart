@@ -16,7 +16,8 @@ class TalkScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(kLighteningTalkTitle),
+        title: Text(kLighteningTalkTitle, style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),),
+
         backgroundColor: kBgColor,
       ),
       floatingActionButton: CustomFloatingButton(

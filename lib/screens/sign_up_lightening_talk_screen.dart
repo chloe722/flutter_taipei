@@ -95,7 +95,7 @@ class _SignUpLighteningTalkScreenState
     Fluttertoast.showToast(
         msg: msg,
         toastLength: Toast.LENGTH_SHORT,
-        gravity: ToastGravity.CENTER,
+        gravity: ToastGravity.BOTTOM,
         timeInSecForIos: 1,
         backgroundColor: Colors.black54,
         textColor: Colors.white,
@@ -147,8 +147,7 @@ class _SignUpLighteningTalkScreenState
                         _formField(
                             hint: kNumberHint,
                             icon: Icons.confirmation_number,
-                            controller: numberController,
-                            enabled: numberController.text.isEmpty),
+                            controller: numberController,),
                         _formField(
                             hint: kNameHint,
                             icon: Icons.person,

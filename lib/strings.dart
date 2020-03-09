@@ -12,10 +12,10 @@ const String kSpeakerIntro1 =
 const String kSpeakerTopicIntro1 = "在許多時候，我們會發現，在我們正在使用程式語言以及框架中，並不能夠很好的表現我們想用程式完成的任務，當我們想要寫出更具有表達性的程式時，往往就會考慮開發一套自己的 DSL(Domain Spefic Language)。我在今年一月開始，寫了一套在 Flutter 當中的 Turtle Graphics LIbrary，我會說明我怎麼製作我的 DSL 以及這樣的 DSL 怎麼變成 Flutter 當中的圖片與動畫效果。";
 
 const String kSpeakerName2 = "陳董";
-const String kSpeakerTopic2 = "TBD";
+const String kSpeakerTopic2 = "[在充滿霧氣的窗上畫一個笑臉] CustomPainter 相關的實作分享";
 const String kSpeakerIntro2 =
     "一名工程師\n曾經 12 年待在上海沒有回過台灣。回台灣的第一年，爬玉山、腳踏車環島、泳渡日月潭，後來完成了標準鐵人三項。當然還很喜歡讀書和旅遊，目前是「好想工作室」的 co-founder";
-const String kSpeakerTopicIntro2 = "";
+const String kSpeakerTopicIntro2 = "[在充滿霧氣的窗上畫一個笑臉] CustomPainter 相關的實作分享";
 
 const String kLighteningTalkTitle = "現場分享者";
 const String kAgendaTitle = "流程";
