@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_taipei/database.dart';
+import 'package:flutter_taipei/repository.dart';
 import 'package:flutter_taipei/model/lightening_talk.dart';
 import 'package:flutter_taipei/strings.dart';
 import 'package:flutter_taipei/widgets/lightening_talk_item.dart';
@@ -9,7 +9,7 @@ class TalkScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       child: StreamBuilder<List<LighteningTalk>>(
-          stream: getLighteningTalks(),
+          stream: Repository().getLighteningTalks(),
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting)
               CircularProgressIndicator();

@@ -28,6 +28,8 @@ const String kSignUpForLighteningTalk = "報名分享";
 const String kEditingSubmittedTopic = "修改分享題目";
 const String kBottomNavAgendaTitle = "查看流程";
 const String kBottomNavTalksTitle = "現場分享";
+const String kSignUpSuccess = "登記成功！";
+const String kInvalidNumberMsg = "號碼無效，請檢查輸入的號碼是否確";
 
 const String kNumberLabel = "號碼";
 const String kNameLabel = "名字";

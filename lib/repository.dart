@@ -6,6 +6,10 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 Firestore _firestore = Firestore();
 
+
+class Repository {
+
+
 Stream<List<LighteningTalk>> getLighteningTalks() {
   return _firestore
       .collection("lightening_talk")
@@ -35,7 +39,7 @@ Future<LighteningTalk> getExistingTalk() async {
 }
 
 
-Future<bool> isNumberValidated(String number) async {
+Future<bool> _isNumberValidated(String number) async {
   final snapshot =
       await _firestore.collection("valid_numbers").document(number).get();
   return (snapshot != null && snapshot.exists);
@@ -43,8 +47,8 @@ Future<bool> isNumberValidated(String number) async {
 
 Future<bool> signUpLighteningTalk(
     {String number, String name, String topic}) async {
-  var result = await isNumberValidated(number);
-  print("result: ${number + name + topic}");
+  var result = await _isNumberValidated(number);
+  print("result: $result      ${number + name + topic}");
 
   if (result) {
     await _firestore.document("lightening_talk/$number").setData({
@@ -78,3 +82,4 @@ Future<LighteningTalk> getDataFromPreferences() async {
   ,topic: prefs.getString('topic')));
 }
 
+}
