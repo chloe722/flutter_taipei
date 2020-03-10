@@ -20,10 +20,14 @@ const String kSpeakerTopicIntro2 = "[在充滿霧氣的窗上畫一個笑臉] Cu
 const String kLighteningTalkTitle = "現場分享者";
 const String kAgendaTitle = "流程";
 
+const String kEmptyTalkListPlaceholderText = "趕快插頭香！大家等你分享呢！";
+
 
 const String kSignUp = "登記";
 const String kSignUpForLighteningTalk = "報名分享";
 const String kEditingSubmittedTopic = "修改分享題目";
+const String kBottomNavAgendaTitle = "查看流程";
+const String kBottomNavTalksTitle = "現場分享";
 
 const String kNumberLabel = "號碼";
 const String kNameLabel = "名字";
