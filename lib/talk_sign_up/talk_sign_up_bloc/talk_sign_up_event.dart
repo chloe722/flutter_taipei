@@ -68,8 +68,8 @@ class Submitted extends TalkSignUpEvent {
 
 }
 
-class SignUpTalkPressed extends TalkSignUpEvent {
-  SignUpTalkPressed(
+class SubmitTalkPressed extends TalkSignUpEvent {
+  SubmitTalkPressed(
       {@required this.number,
         @required this.speakerName,
         @required this.topic});
@@ -85,23 +85,5 @@ class SignUpTalkPressed extends TalkSignUpEvent {
   String toString() {
     return 'SignUpTalk{number: $number, speakerName: $speakerName, topic: $topic}';
   }
-
-}
-
-class ReviseTalkPressed extends TalkSignUpEvent {
-  const ReviseTalkPressed({@required this.number, @required this.speakerName, @required this.topic});
-
-  final String number;
-  final String speakerName;
-  final String topic;
-
-  @override
-  List<Object> get props => [number, speakerName, topic];
-
-  @override
-  String toString() {
-    return 'ReviseTalk{number: $number, speakerName: $speakerName, topic: $topic}';
-  }
-
 
 }

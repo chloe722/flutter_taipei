@@ -25,7 +25,7 @@ const String kEmptyTalkListPlaceholderText = "趕快插頭香！大家等你分�
 
 const String kSignUp = "登記";
 const String kSignUpForLighteningTalk = "報名分享";
-const String kEditingSubmittedTopic = "修改分享題目";
+const String kEditingSubmittedTopic = "修改題目";
 const String kBottomNavAgendaTitle = "查看流程";
 const String kBottomNavTalksTitle = "現場分享";
 const String kSignUpSuccess = "登記成功！";

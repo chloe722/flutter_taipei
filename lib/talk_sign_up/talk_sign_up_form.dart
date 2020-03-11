@@ -1,38 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_icons/flutter_icons.dart';
-import 'package:flutter_taipei/constants.dart';
-import 'package:flutter_taipei/repository.dart';
+import 'package:flutter_taipei/app_bloc/app_bloc.dart';
+import 'package:flutter_taipei/app_bloc/app_event.dart';
+import 'package:flutter_taipei/model/lightening_talk.dart';
 import 'package:flutter_taipei/strings.dart';
-import 'package:flutter_taipei/talk_sign_up_bloc/talk_signup_barrel.dart';
+import 'package:flutter_taipei/talk_sign_up/talk_sign_up_bloc/talk_signup_barrel.dart';
+import 'package:flutter_taipei/widgets/submit_buttom.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
-class SignUpLighteningTalkScreen extends StatelessWidget {
-  SignUpLighteningTalkScreen({Repository repository}):
-        assert (repository != null),
-        _repository = repository;
+class TalkSignUpForm extends StatefulWidget {
+  TalkSignUpForm({this.talk});
 
-  final Repository _repository;
+  final LighteningTalk talk;
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(),
-        body: BlocProvider<TalkSignUpBloc>(
-          create: (context) => TalkSignUpBloc(repository: _repository),
-          child:SignUpTalkForm(),
-        ));
-  }
+  _TalkSignUpFormState createState() => _TalkSignUpFormState();
 }
 
-
-class SignUpTalkForm extends StatefulWidget {
-
-  @override
-  _SignUpTalkFormState createState() => _SignUpTalkFormState();
-}
-
-class _SignUpTalkFormState extends State<SignUpTalkForm> {
+class _TalkSignUpFormState extends State<TalkSignUpForm> {
 
   final TextEditingController _numberController = TextEditingController();
   final TextEditingController _nameController = TextEditingController();
@@ -40,14 +26,11 @@ class _SignUpTalkFormState extends State<SignUpTalkForm> {
 
   final _formKey = GlobalKey<FormState>();
 
-//  void initData() async {
-//    _stream.add(await Repository().getExistingTalk());
-//  }
-
   bool _loading = false;
 
-  TalkSignUpBloc _bloc;
+  bool _isTalkedExisted = false;
 
+  TalkSignUpBloc _bloc;
 
   bool get isPopulated => _numberController.text.isNotEmpty &&
       _nameController.text.isNotEmpty &&
@@ -63,8 +46,19 @@ class _SignUpTalkFormState extends State<SignUpTalkForm> {
     _numberController.addListener(_onNumberChanged);
     _nameController.addListener(_onNameChanged);
     _topicController.addListener(_onTopicChanged);
-//    initData();
     super.initState();
+  }
+
+
+  @override
+  void didChangeDependencies() {
+    _isTalkedExisted = widget.talk != null;
+    if (widget.talk != null) {
+      _numberController.text = widget.talk.number;
+      _nameController.text = widget.talk.speakerName;
+      _topicController.text = widget.talk.topic;
+    }
+    super.didChangeDependencies();
   }
 
   @override
@@ -74,7 +68,6 @@ class _SignUpTalkFormState extends State<SignUpTalkForm> {
     _nameController.dispose();
     super.dispose();
   }
-
 
   void showToast(String msg) {
     Fluttertoast.showToast(
@@ -101,7 +94,7 @@ class _SignUpTalkFormState extends State<SignUpTalkForm> {
 
   void _onSubmitted() {
     if (_formKey.currentState.validate()) {
-      _bloc.add(SignUpTalkPressed(
+      _bloc.add(SubmitTalkPressed(
           number: _numberController.text,
           speakerName: _nameController.text,
           topic: _topicController.text));
@@ -144,7 +137,7 @@ class _SignUpTalkFormState extends State<SignUpTalkForm> {
         return !state.isNameValid ? kErrorNameInput : null;
       case kTopicHint:
         return !state.isTopicValid ? kErrorTopicInput : null;
-        default:
+      default:
         return null;
     }
   }
@@ -155,6 +148,7 @@ class _SignUpTalkFormState extends State<SignUpTalkForm> {
       listener: (context, state) {
         if (state.isSuccess) {
           _loading = false;
+          BlocProvider.of<AppBloc>(context).add(AppStarted());
           showToast(kSignUpSuccess);
           Navigator.pop(context);
         }
@@ -212,30 +206,6 @@ class _SignUpTalkFormState extends State<SignUpTalkForm> {
             );
           }
       ),
-    );
-  }
-}
-
-
-class SubmitButton extends StatelessWidget {
-  SubmitButton({this.label, VoidCallback onPress, this.loading}): _onPress = onPress;
-
-  final String label;
-  final VoidCallback _onPress;
-  final bool loading;
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialButton(
-      minWidth: double.infinity,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
-      padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 16.0),
-      onPressed: loading? null : _onPress,
-      splashColor: Colors.grey,
-      child: loading
-          ? CircularProgressIndicator()
-          : Text(label, style: TextStyle(color: Colors.white)),
-      color: kBgColor,
     );
   }
 }

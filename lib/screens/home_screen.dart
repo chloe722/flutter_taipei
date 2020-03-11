@@ -1,26 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_taipei/constants.dart';
+import 'package:flutter_taipei/model/lightening_talk.dart';
 import 'package:flutter_taipei/repository.dart';
 import 'package:flutter_taipei/screens/agenda_screen.dart';
 import 'package:flutter_taipei/screens/lightening_talk_screen.dart';
-import 'package:flutter_taipei/screens/talk_sign_up_screen.dart';
+import 'package:flutter_taipei/talk_sign_up/talk_sign_up_screen.dart';
 import 'package:flutter_taipei/strings.dart';
 import 'package:flutter_taipei/widgets/clipping_class.dart';
 import 'package:flutter_taipei/widgets/custom_floating_button.dart';
 
 class HomeScreen extends StatefulWidget {
-  HomeScreen({this.repository});
+  HomeScreen({this.repository, this.talk});
 
   final Repository repository;
+  final LighteningTalk talk;
 
   @override
   _HomeScreenState createState() => _HomeScreenState();
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-
   Repository get _repository => widget.repository;
+
+  LighteningTalk get _talk => widget.talk;
 
   int _currentTab = 0;
 
@@ -36,29 +39,38 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   void onPress(BuildContext context) {
-    Navigator.push(context,
-        MaterialPageRoute(builder: (context) => SignUpLighteningTalkScreen(repository: _repository)));
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) => SignUpLighteningTalkScreen(
+                repository: _repository, talk: _talk)));
   }
 
   @override
   Widget build(BuildContext context) {
     bool _isAgendaScreen = _currentTab == 0;
+    bool _isTalkExisted = _talk != null;
 
     return Scaffold(
         appBar: AppBar(
-          titleSpacing: 0.5,
-          title: Text( _isAgendaScreen? kAgendaTitle : kLighteningTalkTitle),
+          title: Text(_isAgendaScreen ? kAgendaTitle : kLighteningTalkTitle),
           centerTitle: true,
           backgroundColor: kBgColor,
           elevation: 0.0,
+          actions: <Widget>[
+            IconButton(
+              icon: Icon(Icons.clear),
+              onPressed: () => _repository.clearAll(),
+            )
+          ],
         ),
-        floatingActionButton: _isAgendaScreen
-            ? null
-            : CustomFloatingButton(
-                label: kSignUpForLighteningTalk,
-                icon: Icons.add,
-                onPress: () => onPress(context),
-              ),
+        floatingActionButton: CustomFloatingButton(
+          label: _isTalkExisted
+              ? kEditingSubmittedTopic
+              : kSignUpForLighteningTalk,
+          icon: _isTalkExisted ? Icons.edit : Icons.add,
+          onPress: () => onPress(context),
+        ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
         bottomNavigationBar: BottomNavigationBar(
           currentIndex: _currentTab,

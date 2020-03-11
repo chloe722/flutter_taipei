@@ -5,7 +5,7 @@ class CustomFloatingButton extends StatelessWidget {
 
   final String label;
   final IconData icon;
-  final Function onPress;
+  final VoidCallback onPress;
 
   @override
   Widget build(BuildContext context) {
@@ -13,12 +13,8 @@ class CustomFloatingButton extends StatelessWidget {
       isExtended: true,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.0)),
       elevation: 8.0,
-      label: Row(
-        children: <Widget>[
-          Icon(icon),
-          Text(label),
-        ],
-      ),
+      icon: Icon(icon),
+      label:  Text(label),
       onPressed: onPress,
     );
   }

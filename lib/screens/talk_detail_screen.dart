@@ -57,7 +57,7 @@ class _TalkDetailScreenState extends State<TalkDetailScreen> {
         child: Container(
             width: 100.0,
             height: 100.0,
-            margin: EdgeInsets.symmetric(vertical: 16.0),
+            margin: EdgeInsets.symmetric(vertical: 8.0),
             child: CircleAvatar(
                 backgroundImage: AssetImage(widget.speaker.photo))),
       ),

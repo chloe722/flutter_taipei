@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_taipei/model/lightening_talk.dart';
 
 @immutable
 class TalkSignUpState {
@@ -18,6 +19,18 @@ class TalkSignUpState {
       @required this.isSuccess,
       @required this.isFailed,
       @required this.isSubmitting});
+
+  factory TalkSignUpState.talkExisted({LighteningTalk talk}) {
+    return TalkSignUpState(
+      isNumberValid: true,
+      isNameValid: true,
+      isTopicValid: true,
+      isSubmitting: false,
+      isSuccess: false,
+      isFailed: false,
+
+    );
+  }
 
   factory TalkSignUpState.init() {
     return TalkSignUpState(

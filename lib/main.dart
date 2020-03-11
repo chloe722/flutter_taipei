@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_taipei/app_bloc/app_bloc.dart';
+import 'package:flutter_taipei/app_bloc/app_event.dart';
+import 'package:flutter_taipei/app_bloc/app_state.dart';
 import 'package:flutter_taipei/repository.dart';
 import 'package:flutter_taipei/screens/home_screen.dart';
+import 'package:flutter_taipei/screens/splash_screen.dart';
 import 'package:flutter_taipei/simple_bloc_delegate.dart';
 
 void main() {
@@ -11,11 +15,13 @@ void main() {
 
   final Repository repository = Repository();
 
-  runApp(MyApp(repository: repository));
+  runApp(BlocProvider(
+      create: (context) => AppBloc(repository: repository)..add(AppStarted()),
+      child: App(repository: repository)));
 }
 
-class MyApp extends StatelessWidget {
-  MyApp({this.repository});
+class App extends StatelessWidget {
+  App({this.repository});
 
   final Repository repository;
 
@@ -25,7 +31,14 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Taipei',
       theme: ThemeData(
           primarySwatch: Colors.blue, backgroundColor: Colors.grey[200]),
-      home: HomeScreen(repository: repository,),
+      home: BlocBuilder<AppBloc, AppState>(builder: (context, state) {
+        if (state is Uninitialized) {
+          return SplashScreen();
+        }
+        if (state is Initialize) {
+          return HomeScreen(repository: repository, talk: state.talk);
+        }
+      }),
     );
   }
 }
