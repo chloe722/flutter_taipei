@@ -1,5 +1,4 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_taipei/model/lightening_talk.dart';
 
 @immutable
 class TalkSignUpState {

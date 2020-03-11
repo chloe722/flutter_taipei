@@ -5,17 +5,20 @@ import 'package:flutter_taipei/strings.dart';
 import 'package:flutter_taipei/widgets/lightening_talk_item.dart';
 
 class TalkScreen extends StatelessWidget {
+  TalkScreen({this.repository});
+
+  final Repository repository;
+
   @override
   Widget build(BuildContext context) {
     return Container(
       child: StreamBuilder<List<LighteningTalk>>(
-          stream: Repository().getLighteningTalks(),
+          stream: repository.getLighteningTalks(),
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting)
               CircularProgressIndicator();
             if (snapshot.hasData && snapshot.data != null) {
               final _data = snapshot.data;
-              print(_data);
               return _data.isNotEmpty
                   ? ListView.builder(
                       itemCount: _data.length,

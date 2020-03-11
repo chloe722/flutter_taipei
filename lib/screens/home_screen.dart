@@ -27,15 +27,21 @@ class _HomeScreenState extends State<HomeScreen> {
 
   int _currentTab = 0;
 
-  List<Widget> _tabs = [
-    AgendaScreen(),
-    TalkScreen(),
-  ];
+  List<Widget> _tabs;
 
   void _onTabTap(int index) {
     setState(() {
       _currentTab = index;
     });
+  }
+
+  @override
+  void initState() {
+    _tabs = [
+      AgendaScreen(),
+      TalkScreen(repository: _repository),
+    ];
+    super.initState();
   }
 
   void onPress(BuildContext context) {
@@ -57,7 +63,7 @@ class _HomeScreenState extends State<HomeScreen> {
           centerTitle: true,
           backgroundColor: kBgColor,
           elevation: 0.0,
-          actions: <Widget>[
+          actions: <Widget>[ //TODO delete
             IconButton(
               icon: Icon(Icons.clear),
               onPressed: () => _repository.clearAll(),

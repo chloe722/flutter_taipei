@@ -4,12 +4,10 @@ class LighteningTalk {
   final String number;
   final String speakerName;
   final String topic;
-  final String orderNumber; //TODO orderNumber is signed up by the time
   final Timestamp timestamp;
 
 
-  LighteningTalk({this.number, this.speakerName, this.topic,
-      this.orderNumber, this.timestamp});
+  LighteningTalk({this.number, this.speakerName, this.topic, this.timestamp});
 
   factory LighteningTalk.fromFirebase(DocumentSnapshot snapshot){
 
