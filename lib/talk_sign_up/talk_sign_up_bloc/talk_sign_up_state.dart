@@ -20,18 +20,6 @@ class TalkSignUpState {
       @required this.isFailed,
       @required this.isSubmitting});
 
-  factory TalkSignUpState.talkExisted({LighteningTalk talk}) {
-    return TalkSignUpState(
-      isNumberValid: true,
-      isNameValid: true,
-      isTopicValid: true,
-      isSubmitting: false,
-      isSuccess: false,
-      isFailed: false,
-
-    );
-  }
-
   factory TalkSignUpState.init() {
     return TalkSignUpState(
       isNumberValid: false,
@@ -42,6 +30,18 @@ class TalkSignUpState {
       isFailed: false,
     );
   }
+
+  factory TalkSignUpState.hasTalk() {
+    return TalkSignUpState(
+      isNumberValid: true,
+      isNameValid: true,
+      isTopicValid: true,
+      isSubmitting: false,
+      isSuccess: false,
+      isFailed: false,
+    );
+  }
+
 
   factory TalkSignUpState.loading() {
     return TalkSignUpState(

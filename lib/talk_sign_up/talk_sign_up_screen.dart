@@ -21,7 +21,7 @@ class SignUpLighteningTalkScreen extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(),
         body: BlocProvider<TalkSignUpBloc>(
-          create: (context) => TalkSignUpBloc(repository: _repository),
+          create: (context) => TalkSignUpBloc(repository: _repository, talk: _talk),
           child:  TalkSignUpForm(talk: _talk,),
         ));
   }

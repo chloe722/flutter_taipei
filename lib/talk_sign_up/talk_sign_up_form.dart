@@ -3,11 +3,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_taipei/app_bloc/app_bloc.dart';
 import 'package:flutter_taipei/app_bloc/app_event.dart';
+import 'package:flutter_taipei/constants.dart';
 import 'package:flutter_taipei/model/lightening_talk.dart';
 import 'package:flutter_taipei/strings.dart';
 import 'package:flutter_taipei/talk_sign_up/talk_sign_up_bloc/talk_signup_barrel.dart';
+import 'package:flutter_taipei/utils/messager.dart';
 import 'package:flutter_taipei/widgets/submit_buttom.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 
 class TalkSignUpForm extends StatefulWidget {
   TalkSignUpForm({this.talk});
@@ -54,7 +55,7 @@ class _TalkSignUpFormState extends State<TalkSignUpForm> {
   void didChangeDependencies() {
     _isTalkedExisted = widget.talk != null;
     if (widget.talk != null) {
-      _numberController.text = widget.talk.number;
+      _numberController.text= widget.talk.number;
       _nameController.text = widget.talk.speakerName;
       _topicController.text = widget.talk.topic;
     }
@@ -69,16 +70,6 @@ class _TalkSignUpFormState extends State<TalkSignUpForm> {
     super.dispose();
   }
 
-  void showToast(String msg) {
-    Fluttertoast.showToast(
-        msg: msg,
-        toastLength: Toast.LENGTH_SHORT,
-        gravity: ToastGravity.BOTTOM,
-        timeInSecForIos: 1,
-        backgroundColor: Colors.black54,
-        textColor: Colors.white,
-        fontSize: 16.0);
-  }
 
   void _onNumberChanged() {
     _bloc.add(NumberChanged(number: _numberController.text));
@@ -107,24 +98,24 @@ class _TalkSignUpFormState extends State<TalkSignUpForm> {
         IconData icon,
         TalkSignUpState state,
         bool enabled = true}) {
-    return Padding(
+    bool _isNumberField = hint == kNumberHint;
+    return Container(
       padding: const EdgeInsets.symmetric(vertical: 16.0),
       child: TextFormField(
         controller: controller,
         enabled: enabled,
-        keyboardType: (hint == kNumberHint)
+        keyboardType: _isNumberField
             ? TextInputType.number
             : TextInputType.multiline,
         validator: (_) => _validateInput(type: hint, state: state),
         maxLines: null,
-        autofocus: enabled,
+        maxLength: _isNumberField && enabled == true? 6 : null,
         autocorrect: false,
-        decoration: InputDecoration(
-          filled: true,
-          border: InputBorder.none,
+        autofocus: true,
+        decoration: kFormFieldDecoration.copyWith(
           icon: Icon(icon),
           hintText: hint,
-        ),
+        )
       ),
     );
   }
@@ -154,7 +145,9 @@ class _TalkSignUpFormState extends State<TalkSignUpForm> {
         }
 
         if (state.isSubmitting) {
+          FocusScope.of(context).requestFocus(FocusNode());
           _loading = true;
+
         }
 
         if (state.isFailed) {
@@ -164,20 +157,20 @@ class _TalkSignUpFormState extends State<TalkSignUpForm> {
       },
       child: BlocBuilder<TalkSignUpBloc, TalkSignUpState>(
           builder: (context, state) {
-            return Center(
-              child: Container(
-                margin: EdgeInsets.symmetric(horizontal: 16.0),
+            return Container(
+              margin: EdgeInsets.symmetric(horizontal: 24.0, vertical: 16.0),
+              child: SingleChildScrollView(
                 child: Form(
                   key: _formKey,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     mainAxisSize: MainAxisSize.max,
                     children: <Widget>[
-                      Spacer(flex: 1),
                       _formField(
                           hint: kNumberHint,
                           icon: Icons.confirmation_number,
                           controller: _numberController,
+                          enabled: _isTalkedExisted == false,
                           state: state),
                       _formField(
                           hint: kNameHint,
@@ -189,16 +182,16 @@ class _TalkSignUpFormState extends State<TalkSignUpForm> {
                           icon: MaterialCommunityIcons.thought_bubble,
                           controller: _topicController,
                           state: state),
-                      Spacer(flex: 1),
-                      SubmitButton(
-                        label: kSignUp,
-                        onPress:
-                        isSubmitButtonEnabled(state)
-                            ? _onSubmitted
-                            : null,
-                        loading: _loading,
+                      Padding(
+                        padding: const EdgeInsets.only(top: 32.0),
+                        child: SubmitButton(
+                          label: _isTalkedExisted? kEditingSubmittedTopic : kSignUp,
+                          onPress: isSubmitButtonEnabled(state)
+                              ? _onSubmitted
+                              : null,
+                          loading: _loading,
+                        ),
                       ),
-                      Spacer(flex: 1),
                     ],
                   ),
                 ),

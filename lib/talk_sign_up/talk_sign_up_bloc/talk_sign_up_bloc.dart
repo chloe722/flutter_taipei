@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_taipei/app_bloc/app_state.dart';
+import 'package:flutter_taipei/model/lightening_talk.dart';
 import 'package:flutter_taipei/repository.dart';
 import 'package:flutter_taipei/talk_sign_up/talk_sign_up_bloc/talk_signup_barrel.dart';
 import 'package:flutter_taipei/utils/validators.dart';
@@ -8,13 +9,17 @@ import 'package:rxdart/rxdart.dart';
 
 class TalkSignUpBloc extends Bloc<TalkSignUpEvent, TalkSignUpState> {
   final Repository _repository;
+  final LighteningTalk _talk;
 
-  TalkSignUpBloc({@required Repository repository})
+  TalkSignUpBloc({@required Repository repository, LighteningTalk talk})
       : assert(repository != null),
-        _repository = repository;
+        _repository = repository,
+        _talk = talk;
 
   @override
-  TalkSignUpState get initialState => TalkSignUpState.init();
+  TalkSignUpState get initialState {
+    return (_talk != null)? TalkSignUpState.hasTalk() : TalkSignUpState.init();
+  }
 
   @override
   Stream<TalkSignUpState> transformEvents(

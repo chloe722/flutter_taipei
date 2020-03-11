@@ -12,3 +12,12 @@ const TextStyle kContentTextStyle = TextStyle(
 );
 
 const Color kBgColor = Colors.lightBlueAccent;
+
+
+const InputDecoration kFormFieldDecoration = InputDecoration(
+  filled: true,
+  border: InputBorder.none,
+  hintText: '',
+  contentPadding: EdgeInsets.symmetric(vertical: 25.0, horizontal: 10.0),
+
+);
