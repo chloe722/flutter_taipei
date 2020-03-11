@@ -67,7 +67,7 @@ class _HomeScreenState extends State<HomeScreen> {
             IconButton(
               icon: Icon(Icons.clear),
               onPressed: () => _repository.clearAll(),
-            )
+            ),
           ],
         ),
         floatingActionButton: CustomFloatingButton(

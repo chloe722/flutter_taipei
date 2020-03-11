@@ -20,6 +20,7 @@ class Repository {
     });
   }
 
+
   Future<LighteningTalk> getExistingTalk() async {
     final prefData = await getDataFromPreferences();
     String _existNumber = prefData.number;
@@ -38,6 +39,7 @@ class Repository {
   }
 
   Future<bool> _isNumberValidated(String number) async {
+    //TODO change path to valid_numbers_official
     final snapshot =
         await _firestore.collection("valid_numbers").document(number).get();
     return (snapshot != null && snapshot.exists);
@@ -72,7 +74,6 @@ class Repository {
     String _number = prefData.number;
     removeTalk(_number);
     prefs.clear();
-    print("clear all");
   }
 
   Future<void> setDataInPreference(

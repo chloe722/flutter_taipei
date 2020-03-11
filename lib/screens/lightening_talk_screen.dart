@@ -1,3 +1,4 @@
+import 'package:firebase_database/ui/firebase_animated_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_taipei/repository.dart';
 import 'package:flutter_taipei/model/lightening_talk.dart';
@@ -19,8 +20,22 @@ class TalkScreen extends StatelessWidget {
               CircularProgressIndicator();
             if (snapshot.hasData && snapshot.data != null) {
               final _data = snapshot.data;
+//              print("listley currentstate: ${listKey.currentState}");
               return _data.isNotEmpty
-                  ? ListView.builder(
+                  ?
+//
+//              FirebaseAnimatedList(
+//                query: repository.getLighteningTalksTest(),
+//                itemBuilder: (context, snapshot, animation, index) {
+//                  return LighteningTalkItem(
+//                      talk: _data[index],
+//                      animation: animation,
+//                      number: (index + 1).toString());
+//                },
+//              )
+
+
+              ListView.builder(
                       itemCount: _data.length,
                       shrinkWrap: true,
                       itemBuilder: (context, index) => LighteningTalkItem(
