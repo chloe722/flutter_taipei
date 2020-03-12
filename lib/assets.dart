@@ -7,3 +7,4 @@ const String kToastyImage = "images/toasty.png";
 const String kLighteningTalkImage = "images/microphone.png";
 const String kNetworkingImage = "images/dialogue.png";
 const String kGoHomeImage = "images/home.png";
+const String kTaipei101Bg = "images/taipei_101_bg.png";

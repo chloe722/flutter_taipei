@@ -61,7 +61,6 @@ class _HomeScreenState extends State<HomeScreen> {
         appBar: AppBar(
           title: Text(_isAgendaScreen ? kAgendaTitle : kLighteningTalkTitle),
           centerTitle: true,
-          backgroundColor: kDarkBgColor,
           elevation: 0.0,
           actions: <Widget>[ //TODO delete
             IconButton(

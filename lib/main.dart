@@ -30,8 +30,9 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Taipei',
-      color: kDarkBgColor,
+//      color: kDarkBgColor,
       theme: ThemeData(
+        appBarTheme: AppBarTheme(color: kDarkBgColor),
            backgroundColor: kDarkBgColor),
       home: BlocBuilder<AppBloc, AppState>(builder: (context, state) {
         if (state is Uninitialized) {

@@ -12,6 +12,7 @@ class SubmitButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialButton(
       minWidth: double.infinity,
+      elevation: 10.0,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
       padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 16.0),
       onPressed: loading? null : onPress,

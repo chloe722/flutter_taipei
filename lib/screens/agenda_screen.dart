@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_taipei/constants.dart';
 import 'package:flutter_taipei/data.dart';
 import 'package:flutter_taipei/widgets/timeline_item.dart';
 
@@ -8,7 +7,7 @@ class AgendaScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Container(
-        color: kDarkBgColor,
+//        color: kDarkBgColor,
           padding: EdgeInsets.only(left: 8.0, right: 8.0),
           child: ListView.builder(
               shrinkWrap: true,
