@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_taipei/constants.dart';
 import 'package:flutter_taipei/model/lightening_talk.dart';
 import 'package:flutter_taipei/repository.dart';
 import 'package:flutter_taipei/talk_sign_up/talk_sign_up_form.dart';
@@ -19,7 +20,11 @@ class SignUpLighteningTalkScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(),
+        backgroundColor: kDarkBgColor,
+        appBar: AppBar(
+          backgroundColor: kDarkBgColor,
+          elevation: 0.0,
+        ),
         body: BlocProvider<TalkSignUpBloc>(
           create: (context) => TalkSignUpBloc(repository: _repository, talk: _talk),
           child:  TalkSignUpForm(talk: _talk,),

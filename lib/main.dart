@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_taipei/app_bloc/app_bloc.dart';
 import 'package:flutter_taipei/app_bloc/app_event.dart';
 import 'package:flutter_taipei/app_bloc/app_state.dart';
+import 'package:flutter_taipei/constants.dart';
 import 'package:flutter_taipei/repository.dart';
 import 'package:flutter_taipei/screens/home_screen.dart';
 import 'package:flutter_taipei/screens/splash_screen.dart';
@@ -29,8 +30,9 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Taipei',
+      color: kDarkBgColor,
       theme: ThemeData(
-          primarySwatch: Colors.blue, backgroundColor: Colors.grey[200]),
+           backgroundColor: kDarkBgColor),
       home: BlocBuilder<AppBloc, AppState>(builder: (context, state) {
         if (state is Uninitialized) {
           return SplashScreen();

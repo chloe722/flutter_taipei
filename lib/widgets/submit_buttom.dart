@@ -20,7 +20,7 @@ class SubmitButton extends StatelessWidget {
       child: loading
           ? CircularProgressIndicator()
           : Text(label, style: TextStyle(color: Colors.white)),
-      color: kBgColor,
+      color: kLightGreen,
     );
   }
 }

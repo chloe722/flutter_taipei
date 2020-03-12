@@ -61,7 +61,7 @@ class _HomeScreenState extends State<HomeScreen> {
         appBar: AppBar(
           title: Text(_isAgendaScreen ? kAgendaTitle : kLighteningTalkTitle),
           centerTitle: true,
-          backgroundColor: kBgColor,
+          backgroundColor: kDarkBgColor,
           elevation: 0.0,
           actions: <Widget>[ //TODO delete
             IconButton(
@@ -79,6 +79,8 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
         bottomNavigationBar: BottomNavigationBar(
+          backgroundColor: kDarkBgColor,
+          selectedItemColor: kYellow,
           currentIndex: _currentTab,
           onTap: _onTabTap,
           items: [
@@ -97,7 +99,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: Container(
                     height: 180.0,
                     width: MediaQuery.of(context).size.width,
-                    color: kBgColor)),
+                    color: kDarkBgColor)),
             _tabs[_currentTab]
           ],
         ));

@@ -17,8 +17,8 @@ const String kSpeakerIntro2 =
     "一名工程師\n曾經 12 年待在上海沒有回過台灣。回台灣的第一年，爬玉山、腳踏車環島、泳渡日月潭，後來完成了標準鐵人三項。當然還很喜歡讀書和旅遊，目前是「好想工作室」的 co-founder";
 const String kSpeakerTopicIntro2 = "[在充滿霧氣的窗上畫一個笑臉] CustomPainter 相關的實作分享";
 
-const String kLighteningTalkTitle = "現場分享者";
-const String kAgendaTitle = "流程";
+const String kLighteningTalkTitle = "跟大家分享吧！";
+const String kAgendaTitle = "歡迎參加 Flutter Taipei Party!";
 
 const String kEmptyTalkListPlaceholderText = "趕快插頭香！大家等你分享呢！";
 

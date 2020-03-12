@@ -1,5 +1,6 @@
 import 'package:firebase_database/ui/firebase_animated_list.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_taipei/constants.dart';
 import 'package:flutter_taipei/repository.dart';
 import 'package:flutter_taipei/model/lightening_talk.dart';
 import 'package:flutter_taipei/strings.dart';
@@ -13,6 +14,7 @@ class TalkScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      color: kDarkBgColor,
       child: StreamBuilder<List<LighteningTalk>>(
           stream: repository.getLighteningTalks(),
           builder: (context, snapshot) {

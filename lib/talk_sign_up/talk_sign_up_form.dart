@@ -113,7 +113,7 @@ class _TalkSignUpFormState extends State<TalkSignUpForm> {
         autocorrect: false,
         autofocus: true,
         decoration: kFormFieldDecoration.copyWith(
-          icon: Icon(icon),
+          icon: Icon(icon,color: kGhostWhite,),
           hintText: hint,
         )
       ),

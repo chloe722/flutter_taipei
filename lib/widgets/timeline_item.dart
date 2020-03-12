@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_taipei/constants.dart';
 import 'package:flutter_taipei/model/speaker.dart';
 import 'package:flutter_taipei/model/agenda_item.dart';
 import 'package:flutter_taipei/screens/talk_detail_screen.dart';
@@ -106,6 +107,8 @@ class AgendaItem extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
       child: Card(
+        color: kGhostWhite,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
         elevation: 2.0,
         child: Container(
           padding: EdgeInsets.symmetric(vertical: 16.0),
