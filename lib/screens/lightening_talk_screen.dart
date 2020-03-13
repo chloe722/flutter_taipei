@@ -32,7 +32,6 @@ class TalkScreen extends StatelessWidget {
                     child: Center(child: Text(kEmptyTalkListPlaceholderText)),
                   );
           } else {
-            print("no data: ${snapshot.data}");
             return Center(child: CircularProgressIndicator());
           }
         });

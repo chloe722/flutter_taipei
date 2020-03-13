@@ -67,10 +67,10 @@ class _TalkDetailScreenState extends State<TalkDetailScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: kBgColor,
+      backgroundColor: kDarkBgColor,
       appBar: AppBar(
         elevation: 0.0,
-        backgroundColor: kBgColor,
+        backgroundColor: kDarkBgColor,
       ),
       body: Center(
         child: Stack(
