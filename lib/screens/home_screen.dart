@@ -25,22 +25,38 @@ class _HomeScreenState extends State<HomeScreen> {
 
   LighteningTalk get _talk => widget.talk;
 
-  int _currentTab = 0;
+  int _currentPage = 0;
 
-  List<Widget> _tabs;
+  PageController _pageController;
 
-  void _onTabTap(int index) {
+  void bottomTapped(int index) {
     setState(() {
-      _currentTab = index;
+      _currentPage = index;
+      _pageController.animateToPage(index,
+          duration: Duration(milliseconds: 300), curve: Curves.ease);
     });
+  }
+
+  void _onPageChange(int index) {
+    setState(() {
+      _currentPage = index;
+    });
+  }
+
+  Widget buildPageView() {
+    return PageView(
+      controller: _pageController,
+      onPageChanged: _onPageChange,
+      children: <Widget>[
+        AgendaScreen(),
+        TalkScreen(repository: _repository),
+      ],
+    );
   }
 
   @override
   void initState() {
-    _tabs = [
-      AgendaScreen(),
-      TalkScreen(repository: _repository),
-    ];
+    _pageController = PageController(initialPage: _currentPage, keepPage: true);
     super.initState();
   }
 
@@ -54,7 +70,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    bool _isAgendaScreen = _currentTab == 0;
+    bool _isAgendaScreen = _currentPage == 0;
     bool _isTalkExisted = _talk != null;
 
     return Scaffold(
@@ -62,7 +78,8 @@ class _HomeScreenState extends State<HomeScreen> {
           title: Text(_isAgendaScreen ? kAgendaTitle : kLighteningTalkTitle),
           centerTitle: true,
           elevation: 0.0,
-          actions: <Widget>[ //TODO delete
+          actions: <Widget>[
+            //TODO delete
             IconButton(
               icon: Icon(Icons.clear),
               onPressed: () => _repository.clearAll(),
@@ -80,8 +97,8 @@ class _HomeScreenState extends State<HomeScreen> {
         bottomNavigationBar: BottomNavigationBar(
           backgroundColor: kDarkBgColor,
           selectedItemColor: kYellow,
-          currentIndex: _currentTab,
-          onTap: _onTabTap,
+          currentIndex: _currentPage,
+          onTap: bottomTapped,
           items: [
             BottomNavigationBarItem(
                 icon: Icon(MaterialCommunityIcons.view_agenda),
@@ -99,7 +116,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     height: 180.0,
                     width: MediaQuery.of(context).size.width,
                     color: kDarkBgColor)),
-            _tabs[_currentTab]
+            buildPageView()
           ],
         ));
   }

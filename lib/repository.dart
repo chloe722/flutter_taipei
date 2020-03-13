@@ -2,13 +2,14 @@ import 'dart:async';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_taipei/model/lightening_talk.dart';
+import 'package:rxdart/rxdart.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 Firestore _firestore = Firestore();
 
 class Repository {
-  Stream<List<LighteningTalk>> getLighteningTalks() {
-    return _firestore
+  final lightningTalks = BehaviorSubject<List<LighteningTalk>>()
+    ..addStream(_firestore
         .collection("lightening_talk")
         .reference()
         .orderBy("timeStamp", descending: false)
@@ -17,16 +18,17 @@ class Repository {
       return snapshot.documents.map((document) {
         return LighteningTalk.fromFirebase(document);
       }).toList();
-    });
-  }
+    }));
 
+
+  Stream<List<LighteningTalk>> getLighteningTalks() {
+    return lightningTalks;
+  }
 
   Future<LighteningTalk> getExistingTalk() async {
     final prefData = await getDataFromPreferences();
     String _existNumber = prefData.number;
-    print("existing num: $_existNumber");
     if (_existNumber != null) {
-      print("existing num: $_existNumber");
       final snapshot = await _firestore
           .collection("lightening_talk")
           .document(_existNumber)
@@ -90,5 +92,9 @@ class Repository {
         number: prefs.getString('lightening_talk_number'),
         speakerName: prefs.getString("speakerName"),
         topic: prefs.getString('topic')));
+  }
+
+  close() {
+    lightningTalks.close();
   }
 }

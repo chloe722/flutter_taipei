@@ -32,8 +32,8 @@ class App extends StatelessWidget {
       title: 'Flutter Taipei',
 //      color: kDarkBgColor,
       theme: ThemeData(
-        appBarTheme: AppBarTheme(color: kDarkBgColor),
-           backgroundColor: kDarkBgColor),
+          appBarTheme: AppBarTheme(color: kDarkBgColor),
+          backgroundColor: kDarkBgColor),
       home: BlocBuilder<AppBloc, AppState>(builder: (context, state) {
         if (state is Uninitialized) {
           return SplashScreen();

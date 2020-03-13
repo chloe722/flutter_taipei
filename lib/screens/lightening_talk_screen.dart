@@ -14,10 +14,10 @@ class TalkScreen extends StatelessWidget {
     return StreamBuilder<List<LighteningTalk>>(
         stream: repository.getLighteningTalks(),
         builder: (context, snapshot) {
+
           if (snapshot.connectionState == ConnectionState.waiting)
             return CircularProgressIndicator();
           if (snapshot.hasData && snapshot.data != null) {
-            print("has ${snapshot.data}");
             final _data = snapshot.data;
             return snapshot.data.isNotEmpty
                 ? ListView.builder(
@@ -33,7 +33,7 @@ class TalkScreen extends StatelessWidget {
                   );
           } else {
             print("no data: ${snapshot.data}");
-            return CircularProgressIndicator();
+            return Center(child: CircularProgressIndicator());
           }
         });
   }
