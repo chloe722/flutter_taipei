@@ -1,7 +1,6 @@
 import 'package:flutter_taipei/assets.dart';
 import 'package:flutter_taipei/model/lightening_talk.dart';
 import 'package:flutter_taipei/model/speaker.dart';
-import 'package:flutter_taipei/model/agenda_item.dart';
 import 'package:flutter_taipei/strings.dart';
 
 //final List<Agenda> agendas = [

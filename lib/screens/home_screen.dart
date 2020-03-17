@@ -6,7 +6,7 @@ import 'package:flutter_taipei/agenda/agenda_bloc/agenda_event.dart';
 import 'package:flutter_taipei/constants.dart';
 import 'package:flutter_taipei/model/lightening_talk.dart';
 import 'package:flutter_taipei/repository.dart';
-import 'package:flutter_taipei/agenda/agenda_bloc/agenda_screen.dart';
+import 'package:flutter_taipei/agenda/agenda_screen.dart';
 import 'package:flutter_taipei/screens/lightening_talk_screen.dart';
 import 'package:flutter_taipei/talk_sign_up/talk_sign_up_screen.dart';
 import 'package:flutter_taipei/strings.dart';
