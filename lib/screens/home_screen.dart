@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_icons/flutter_icons.dart';
-import 'package:flutter_taipei/agenda_bloc/agenda_bloc.dart';
-import 'package:flutter_taipei/agenda_bloc/agenda_event.dart';
+import 'package:flutter_taipei/agenda/agenda_bloc/agenda_bloc.dart';
+import 'package:flutter_taipei/agenda/agenda_bloc/agenda_event.dart';
 import 'package:flutter_taipei/constants.dart';
 import 'package:flutter_taipei/model/lightening_talk.dart';
 import 'package:flutter_taipei/repository.dart';
-import 'package:flutter_taipei/screens/agenda_screen.dart';
+import 'package:flutter_taipei/agenda/agenda_bloc/agenda_screen.dart';
 import 'package:flutter_taipei/screens/lightening_talk_screen.dart';
 import 'package:flutter_taipei/talk_sign_up/talk_sign_up_screen.dart';
 import 'package:flutter_taipei/strings.dart';
@@ -87,15 +87,15 @@ class _HomeScreenState extends State<HomeScreen> {
           centerTitle: true,
           elevation: 0.0,
           actions: <Widget>[
-            //TODO delete
-            IconButton(
-              icon: Icon(Icons.clear),
-              onPressed: () => _repository.clearAll(),
-            ),
-            IconButton(
-              icon: Icon(Icons.get_app),
-              onPressed: () => getAgendaTest(),
-            ),
+//            //TODO delete
+//            IconButton(
+//              icon: Icon(Icons.clear),
+//              onPressed: () => _repository.clearAll(),
+//            ),
+//            IconButton(
+//              icon: Icon(Icons.get_app),
+//              onPressed: () => getAgendaTest(),
+//            ),
           ],
         ),
         floatingActionButton: CustomFloatingButton(

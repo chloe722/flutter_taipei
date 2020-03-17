@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_taipei/agenda_bloc/agenda_bloc.dart';
-import 'package:flutter_taipei/agenda_bloc/agenda_event.dart';
-import 'package:flutter_taipei/agenda_bloc/agenda_state.dart';
-import 'package:flutter_taipei/data.dart';
+import 'package:flutter_taipei/agenda/agenda_bloc/agenda_bloc.dart';
+import 'package:flutter_taipei/agenda/agenda_bloc/agenda_state.dart';
 import 'package:flutter_taipei/repository.dart';
 import 'package:flutter_taipei/widgets/timeline_item.dart';
 
