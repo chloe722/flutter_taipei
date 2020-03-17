@@ -1,16 +1,23 @@
-# flutter_taipei
+# Flutter Taipei Events
 
-A new Flutter application.
+Flutter Taipei Events App to bring better experience for participants
 
-## Getting Started
+![image](images/agenda.png)
+![image](images/talks.png)
+![image](images/talk_detail.png)
+![image](images/sign_up_talk.png)
 
-This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
+## Tech Stack
+* Used [flutter_bloc](https://pub.dev/packages/flutter_bloc) pacage to structure code 
+* Used [App Scipt](https://developers.google.com/apps-script) to read partial data from spread sheet
+* Used [cloud_firestore](https://pub.dev/packages/cloud_firestore) to handle sign up talk on scene
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Status
+Under development
+
+
+
+
+
