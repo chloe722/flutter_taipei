@@ -30,7 +30,6 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Taipei',
-//      color: kDarkBgColor,
       theme: ThemeData(
           appBarTheme: AppBarTheme(color: kDarkBgColor),
           backgroundColor: kDarkBgColor),

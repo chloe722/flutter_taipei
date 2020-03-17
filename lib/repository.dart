@@ -1,7 +1,11 @@
 import 'dart:async';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:dio/dio.dart';
+import 'package:flutter_taipei/model/agenda.dart';
 import 'package:flutter_taipei/model/lightening_talk.dart';
+import 'package:flutter_taipei/model/speaker.dart';
+import 'package:flutter_taipei/utils/image_manager.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -19,7 +23,6 @@ class Repository {
         return LighteningTalk.fromFirebase(document);
       }).toList();
     }));
-
 
   Stream<List<LighteningTalk>> getLighteningTalks() {
     return lightningTalks;
@@ -96,5 +99,37 @@ class Repository {
 
   close() {
     lightningTalks.close();
+  }
+
+  Future<List<Agenda>> getAgenda() async {
+    final url =
+        "https://script.google.com/macros/s/AKfycbyx-InExXDoFIe5w70_EFvh-136cTaiBLK9TSQL1i2DjZ5rWoc/exec";
+    final response = await Dio().get(url);
+
+    print("response: ${response.data}");
+
+    List<Agenda> result = new List<Agenda>();
+    for (int index = 0; index < response.data.length; index++) {
+      final item = response.data[index];
+      print(item);
+
+      result.add(Agenda(
+          date: item[0],
+          time: item[1],
+          icon: getImage(item[2]),
+          content: item[3],
+          duration: item[4],
+          speaker: item.length > 5
+              ? Speaker(
+                  name: item[5],
+                  profile: item[6],
+                  topicIntro: item[7],
+                  talkTopic: item[3],
+                  photo: getImage(item[2])
+          ) : null
+      ));
+    }
+
+    return result;
   }
 }

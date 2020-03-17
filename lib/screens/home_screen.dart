@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_icons/flutter_icons.dart';
+import 'package:flutter_taipei/agenda_bloc/agenda_bloc.dart';
+import 'package:flutter_taipei/agenda_bloc/agenda_event.dart';
 import 'package:flutter_taipei/constants.dart';
 import 'package:flutter_taipei/model/lightening_talk.dart';
 import 'package:flutter_taipei/repository.dart';
@@ -68,6 +71,11 @@ class _HomeScreenState extends State<HomeScreen> {
                 repository: _repository, talk: _talk)));
   }
 
+
+
+  void getAgendaTest()async{
+    await _repository.getAgenda();
+  }
   @override
   Widget build(BuildContext context) {
     bool _isAgendaScreen = _currentPage == 0;
@@ -83,6 +91,10 @@ class _HomeScreenState extends State<HomeScreen> {
             IconButton(
               icon: Icon(Icons.clear),
               onPressed: () => _repository.clearAll(),
+            ),
+            IconButton(
+              icon: Icon(Icons.get_app),
+              onPressed: () => getAgendaTest(),
             ),
           ],
         ),
@@ -108,16 +120,19 @@ class _HomeScreenState extends State<HomeScreen> {
                 title: Text(kBottomNavTalksTitle)),
           ],
         ),
-        body: Stack(
-          children: <Widget>[
-            ClipPath(
-                clipper: ClippingClass(),
-                child: Container(
-                    height: 180.0,
-                    width: MediaQuery.of(context).size.width,
-                    color: kDarkBgColor)),
-            buildPageView()
-          ],
+        body: BlocProvider(
+          create: (context) => AgendaBloc(repository: _repository)..add(Fetch()),
+          child: Stack(
+            children: <Widget>[
+              ClipPath(
+                  clipper: ClippingClass(),
+                  child: Container(
+                      height: 180.0,
+                      width: MediaQuery.of(context).size.width,
+                      color: kDarkBgColor)),
+              buildPageView()
+            ],
+          ),
         ));
   }
 }

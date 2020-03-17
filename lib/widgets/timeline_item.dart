@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_taipei/constants.dart';
+import 'package:flutter_taipei/model/agenda.dart';
 import 'package:flutter_taipei/model/speaker.dart';
 import 'package:flutter_taipei/model/agenda_item.dart';
 import 'package:flutter_taipei/screens/talk_detail_screen.dart';
@@ -88,7 +89,7 @@ import 'package:flutter_taipei/screens/talk_detail_screen.dart';
 //}
 
 class AgendaItem extends StatelessWidget {
-  final AgendaModel agenda;
+  final Agenda agenda;
 
   AgendaItem({this.agenda});
 
@@ -98,7 +99,7 @@ class AgendaItem extends StatelessWidget {
         height: 50.0,
         child: CircleAvatar(
             backgroundImage:
-                AssetImage(isTalk ? agenda.speaker.photo : agenda.image)));
+                AssetImage(isTalk ? agenda.speaker.photo : agenda.icon)));
   }
 
   @override

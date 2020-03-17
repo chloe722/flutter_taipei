@@ -38,7 +38,7 @@ class _TalkDetailScreenState extends State<TalkDetailScreen> {
               mainAxisSize: MainAxisSize.max,
               children: <Widget>[
                 _content(text: widget.speaker.name, isHeading: true),
-                _content(text: widget.speaker.introduction, isHeading: false),
+                _content(text: widget.speaker.profile, isHeading: false),
                 _content(text: widget.speaker.talkTopic, isHeading: true),
                 _content(text: widget.speaker.topicIntro, isHeading: false),
               ],
